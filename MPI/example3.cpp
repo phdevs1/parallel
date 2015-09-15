@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 	MPI_Comm_rank(MPI_COMM_WORLD,&rank);
   if(rank == 0)
   {
-  	 text[1000] = {
+  	 char text[] = {
       "Edelweiss, edelweiss, every morning you greet me.\n\
       Small and white, clean and bright, you look happy to meet me.\n\
       Blossom of snow may you bloom and grow, bloom and grow forever.\n\
@@ -29,7 +29,8 @@ int main(int argc, char *argv[])
    	};
    	cout<<text<<endl;
 	cout<<"input the word: ";
-  	fgets(target, sizeof(target), stdin);
+	cin>>target;
+  	//fgets(target, sizeof(target), stdin);
    	len = strlen(target);
    	if(target[len-1] == '\n')  
       target[len-1] = '\0';
@@ -42,7 +43,6 @@ int main(int argc, char *argv[])
   }
   else
   {
-  	
   	MPI_Recv(&text,100,MPI_INT,0,tag,MPI_COMM_WORLD,&status);
   	MPI_Recv(&target,100,MPI_INT,0,tag,MPI_COMM_WORLD,&status);
   	ptr = text;
