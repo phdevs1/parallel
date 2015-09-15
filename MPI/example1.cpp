@@ -14,14 +14,14 @@ int main(int argc, char *argv[])
 	if(rank == 0)
 	{
 		data = 2;
-
 	}
-	else
-		MPI_Recv(&data,1,MPI_INT,rank-1,tag,MPI_COMM_WORLD,&status);
+	
 	if (procs-1>rank)
 	{
 		MPI_Send(&data,1,MPI_INT,rank+1,tag,MPI_COMM_WORLD);
 	}
+	else
+		MPI_Recv(&data,1,MPI_INT,rank-1,tag,MPI_COMM_WORLD,&status);
 	cout<<"from procs: "<<rank<<" -> "<<data<<endl;		
 	MPI_Finalize();
 
