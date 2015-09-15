@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 {
 	int procs, rank,len, count = 0;
    	char *ptr,text[1000];
-   	char target[40] = {'\0'};
+   	char target[40];
 	int tag = 10;
 	MPI_Status status;
 	MPI_Init(&argc,&argv);
@@ -30,8 +30,7 @@ int main(int argc, char *argv[])
    	cout<<text<<endl;
 	cout<<"input the word: ";
 	cin>>target;
-  	//fgets(target, sizeof(target), stdin);
-   	len = strlen(target);
+  	len = strlen(target);
    	if(target[len-1] == '\n')  
       target[len-1] = '\0';
 
