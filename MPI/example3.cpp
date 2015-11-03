@@ -9,7 +9,7 @@ using namespace std;
 int main(int argc, char *argv[]) 
 {
 	int procs, rank,len, count = 0;
-   	char *ptr,text[1000];
+   	char *ptr,text[1000],*ptr1;
    	char target[40];
 	int tag = 10;
 	MPI_Status status;
@@ -31,18 +31,21 @@ int main(int argc, char *argv[])
 	cout<<"input the word: ";
 	cin>>target;
   	len = strlen(target);
+  	char p[] = {"."};
    	if(target[len-1] == '\n')  
       target[len-1] = '\0';
 
    	for (int i = 1; i < procs; ++i)
 	{
-		MPI_Send(&text,100,MPI_INT,i,tag,MPI_COMM_WORLD);	
+		ptr1 = strstr(text, p);
+		MPI_Send(ptr1,100,MPI_INT,i,tag,MPI_COMM_WORLD);	
 		MPI_Send(&target,10,MPI_INT,i,tag,MPI_COMM_WORLD);	
 	}
   }
   else
   {
   	MPI_Recv(&text,100,MPI_INT,0,tag,MPI_COMM_WORLD,&status);
+  	cout<<"->>>>"<<text<<endl;
   	MPI_Recv(&target,100,MPI_INT,0,tag,MPI_COMM_WORLD,&status);
   	ptr = text;
 	ptr = strstr(text, target);

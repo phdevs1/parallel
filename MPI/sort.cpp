@@ -116,18 +116,18 @@ void Odd_even_sort(int a[], int n)
 int computeNeighbor(int phase, int rank, int size)
 {
   int neighbor;
-  if(phase % 2 != 0)  //fase odd 
+  if(phase % 2 != 0)
   { 
-    if(rank % 2 != 0)  //rank odd 
+    if(rank % 2 != 0)
       neighbor = rank + 1;
-    else               //rank even 
+    else             
       neighbor = rank - 1;
   } 
-  else //fase even 
+  else 
   {  
-    if(rank % 2 != 0) //rank odd 
+    if(rank % 2 != 0) 
       neighbor = rank - 1; 
-    else    //rank even 
+    else    
       neighbor = rank + 1;
   }
 
