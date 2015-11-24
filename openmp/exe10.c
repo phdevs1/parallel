@@ -12,10 +12,11 @@ int main(int argc, char* argv[])
    thread_count = strtol(argv[1],NULL,10);
    cout<<"ingrese n:";
    cin>>n;
-   int i;
-   double my_sum = 0.0;
+   
   # pragma omp parallel num_threads(thread_count)
    {
+      int i;
+      double my_sum = 0.0;
       for (i = 0; i < n; i++)
   #   pragma omp atomic
       my_sum += sin(i);
