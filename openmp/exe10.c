@@ -12,21 +12,19 @@ int main(int argc, char* argv[])
    thread_count = strtol(argv[1],NULL,10);
    cout<<"ingrese n:";
    cin>>n;
-   int a[n];
-   a[0] = 0;
-   # pragma omp parallel for num_threads(thread_count)\
-   for(int i = 1; i < n; i++)
-   {  
-  		//a[i]=a[i-1]+i;//
-  		a[i]=i*(i+1)/2; 
-   }
-   
-   for (int i = 1; i < n; ++i)
+   int i;
+   double my_sum = 0.0;
+  # pragma omp parallel num_threads(thread_count)
    {
-      cout<<a[i]<<" ";
+      for (i = 0; i < n; i++)
+  #   pragma omp atomic
+      my_sum += sin(i);
    }
-   cout<<endl;
+
+   
+
+   
+
    return 0;
 }
-
 
